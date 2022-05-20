@@ -7,6 +7,15 @@ const fetchSuperHeros = () => {
 };
 
 export const RQSuperHeroesPage = () => {
+
+  const onSuccessCallback = (data) => {
+    console.log("On Success Callback Is Called",data)
+  } 
+
+  const onErrorCallback = (data) => {
+    console.log("On Success Callback Is Called",data)
+  } 
+
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     "super-heros",
     fetchSuperHeros,
@@ -16,7 +25,9 @@ export const RQSuperHeroesPage = () => {
       // refetchOnMount: true,
       // refetchOnWindowFocus: true,
       //refetchInterval: false, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
-      enabled: false
+      // enabled: false,
+      onSuccess: onSuccessCallback,
+      onError: onErrorCallback,
     }
   );
 
@@ -28,7 +39,7 @@ export const RQSuperHeroesPage = () => {
   return (
     <Fragment>
       <h2>React Query Super Heroes Page</h2>
-      <button onClick={refetch}>Fetch Data</button>
+       {/*<button onClick={refetch}>Fetch Data</button>*/}
       {data && data.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>;
       })}
