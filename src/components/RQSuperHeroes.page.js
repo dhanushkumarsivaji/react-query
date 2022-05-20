@@ -7,7 +7,7 @@ const fetchSuperHeros = () => {
 };
 
 export const RQSuperHeroesPage = () => {
-  const { isLoading, data, isError, error, isFetching } = useQuery(
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     "super-heros",
     fetchSuperHeros,
     { 
@@ -15,7 +15,8 @@ export const RQSuperHeroesPage = () => {
       // staleTime: 30000 /*  Staletime is the time limit set of refetching. During this time the refetch will not occur. Bydefault it is set to zero.*/
       // refetchOnMount: true,
       // refetchOnWindowFocus: true,
-      //refetchInterval: false /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
+      //refetchInterval: false, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
+      enabled: false
     }
   );
 
@@ -27,9 +28,11 @@ export const RQSuperHeroesPage = () => {
   return (
     <Fragment>
       <h2>React Query Super Heroes Page</h2>
-      {data.data.map((hero) => {
+      <button onClick={refetch}>Fetch Data</button>
+      {data && data.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>;
       })}
+      
     </Fragment>
   );
 };
