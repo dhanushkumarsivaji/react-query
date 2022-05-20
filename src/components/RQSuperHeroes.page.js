@@ -7,9 +7,11 @@ const fetchSuperHeros = ()  => {
 }
 
 export const RQSuperHeroesPage = () => {
-  const { isLoading, data } = useQuery('super-heros',fetchSuperHeros)
+  const { isLoading, data, isError, error } = useQuery('super-heros',fetchSuperHeros)
 
   if(isLoading) return <h2>Loading....</h2>
+
+  if(isError) return <h2>{error.message}</h2>
   return (
     <Fragment>
       <h2>React Query Super Heroes Page</h2>
