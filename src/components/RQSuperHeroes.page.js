@@ -15,6 +15,7 @@ export const RQSuperHeroesPage = () => {
       // staleTime: 30000 /*  Staletime is the time limit set of refetching. During this time the refetch will not occur. Bydefault it is set to zero.*/
       // refetchOnMount: true,
       // refetchOnWindowFocus: true,
+      //refetchInterval: false /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
     }
   );
 
