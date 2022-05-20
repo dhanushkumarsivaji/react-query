@@ -8,14 +8,14 @@ const fetchSuperHeros = () => {
 };
 
 export const RQSuperHeroesPage = () => {
-  const [poolTime, setPooltime] = useState(3000)
+  // const [poolTime, setPooltime] = useState(3000)
 
 
   const onSuccessCallback = (data) => {
     console.log("On Success Callback Is Called",data)
-    if(data && data.data.length === 4){
-      setPooltime(false)
-    }
+    // if(data && data.data.length === 4){
+    //   setPooltime(false)
+    // }
   } 
 
   const onErrorCallback = (data) => {
@@ -31,10 +31,14 @@ export const RQSuperHeroesPage = () => {
       // staleTime: 30000 /*  Staletime is the time limit set of refetching. During this time the refetch will not occur. Bydefault it is set to zero.*/
       // refetchOnMount: true,
       // refetchOnWindowFocus: true,
-      refetchInterval: poolTime, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
+      //refetchInterval: poolTime, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
       // enabled: false,
       onSuccess: onSuccessCallback,
       onError: onErrorCallback,
+      select: (data) => {
+        const superHeroNames = data.data.map((hero) => hero.name)
+        return superHeroNames
+      }
     }
   );
 
@@ -47,10 +51,10 @@ export const RQSuperHeroesPage = () => {
     <Fragment>
       <h2>React Query Super Heroes Page</h2>
        {/*<button onClick={refetch}>Fetch Data</button>*/}
-      {data && data.data.map((hero) => {
+      {/*data && data.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>;
-      })}
-      
+      })*/}
+      {data && data.map((heroName) =><div key={heroName}>{heroName}</div> )}
     </Fragment>
   );
 };
