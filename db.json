@@ -15,5 +15,11 @@
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
     }
+    ,
+    {
+      "id": 4,
+      "name": "Aqua Man",
+      "alterEgo": "Arthur"
+    }
   ]
 }

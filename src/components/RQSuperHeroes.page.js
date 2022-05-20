@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Fragment } from "react/cjs/react.production.min";
@@ -7,14 +8,20 @@ const fetchSuperHeros = () => {
 };
 
 export const RQSuperHeroesPage = () => {
+  const [poolTime, setPooltime] = useState(3000)
+
 
   const onSuccessCallback = (data) => {
     console.log("On Success Callback Is Called",data)
+    if(data && data.data.length === 4){
+      setPooltime(false)
+    }
   } 
 
   const onErrorCallback = (data) => {
     console.log("On Success Callback Is Called",data)
   } 
+
 
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     "super-heros",
@@ -24,7 +31,7 @@ export const RQSuperHeroesPage = () => {
       // staleTime: 30000 /*  Staletime is the time limit set of refetching. During this time the refetch will not occur. Bydefault it is set to zero.*/
       // refetchOnMount: true,
       // refetchOnWindowFocus: true,
-      //refetchInterval: false, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
+      refetchInterval: poolTime, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
       // enabled: false,
       onSuccess: onSuccessCallback,
       onError: onErrorCallback,
