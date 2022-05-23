@@ -1,11 +1,7 @@
-import { useState } from 'react';
-import { useQuery } from "react-query";
-import axios from "axios";
-import { Fragment } from "react/cjs/react.production.min";
-
-const fetchSuperHeros = () => {
-  return axios.get("http://localhost:4000/superheroes");
-};
+// import { useState } from 'react';
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { useSuperHerosData } from './Hooks/useSuperHerosData';
 
 export const RQSuperHeroesPage = () => {
   // const [poolTime, setPooltime] = useState(3000)
@@ -23,26 +19,9 @@ export const RQSuperHeroesPage = () => {
   } 
 
 
-  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
-    "super-heros",
-    fetchSuperHeros,
-    { 
-      // cacheTime: 500000, /* By default all the results are cached to 5mins */
-      // staleTime: 30000 /*  Staletime is the time limit set of refetching. During this time the refetch will not occur. Bydefault it is set to zero.*/
-      // refetchOnMount: true,
-      // refetchOnWindowFocus: true,
-      //refetchInterval: poolTime, /* If we want to pool the api then you can set a number over here. Default is set to false. Use Case: Stock prices etc.. */
-      // enabled: false,
-      onSuccess: onSuccessCallback,
-      onError: onErrorCallback,
-      select: (data) => {
-        const superHeroNames = data.data.map((hero) => hero.name)
-        return superHeroNames
-      }
-    }
-  );
+  const { isLoading, data, isError, error, isFetching, refetch } = useSuperHerosData(onSuccessCallback,onErrorCallback)
 
-  console.log({ isLoading, isFetching });
+  // console.log({ isLoading, isFetching });
 
   if (isLoading) return <h2>Loading....</h2>;
 
@@ -51,10 +30,12 @@ export const RQSuperHeroesPage = () => {
     <Fragment>
       <h2>React Query Super Heroes Page</h2>
        {/*<button onClick={refetch}>Fetch Data</button>*/}
-      {/*data && data.data.map((hero) => {
-        return <div key={hero.name}>{hero.name}</div>;
-      })*/}
-      {data && data.map((heroName) =><div key={heroName}>{heroName}</div> )}
+      {data && data.data.map((hero) => {
+        return <div key={hero.id}>
+        <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
+        </div>;
+      })}
+      {/*data && data.map((heroName) =><div key={heroName}>{heroName}</div> )*/}
     </Fragment>
   );
 };
