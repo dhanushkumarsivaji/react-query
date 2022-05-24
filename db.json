@@ -47,5 +47,39 @@
       "id":"dhanushkumarsivaji",
       "courses": ["react","gatsby","angular"]
     }
+  ],
+  "colors":[
+    {
+      "id": 1,
+      "color": "white"
+    },
+    {
+      "id": 2,
+      "color": "black"
+    },
+    {
+      "id": 3,
+      "color": "red"
+    },
+    {
+      "id": 4,
+      "color": "grey"
+    },
+    {
+      "id": 5,
+      "color": "yellow"
+    },
+    {
+      "id": 6,
+      "color": "orange"
+    },
+    {
+      "id": 7,
+      "color": "blue"
+    },
+    {
+      "id": 8,
+      "color": "pink"
+    }
   ]
 }
