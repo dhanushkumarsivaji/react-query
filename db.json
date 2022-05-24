@@ -35,5 +35,17 @@
       "id": 3,
       "name": "Boobalan"
     }
+  ],
+  "users":[
+    {
+      "id":"dhanushkumarsivaji@gmail.com",
+      "channelId": "dhanushkumarsivaji"
+    }
+  ],
+  "channels":[
+    {
+      "id":"dhanushkumarsivaji",
+      "courses": ["react","gatsby","angular"]
+    }
   ]
 }
