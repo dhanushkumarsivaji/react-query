@@ -24,6 +24,21 @@
       "name": "Dhanush",
       "alterEgo": "Dharma",
       "id": 5
+    },
+    {
+      "name": "Shazam",
+      "alterEgo": "Billy Batson",
+      "id": 6
+    },
+    {
+      "name": "Black Widow",
+      "alterEgo": "Natasha",
+      "id": 7
+    },
+    {
+      "name": "Ironman",
+      "alterEgo": "Tony",
+      "id": 8
     }
   ],
   "friends": [
