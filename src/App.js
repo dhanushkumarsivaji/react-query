@@ -9,6 +9,7 @@ import { DynamicParallel } from "./components/DynamicParallel.page";
 import { DependentQueries } from "./components/DependentQueries.page";
 import { PaginatedQueries } from "./components/PaginatedQueries.page";
 import { InfiniteQueries } from "./components/InfiniteQueries.page";
+import { MutationPage } from "./components/Mutation.page";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
             </li>
             <li>
             <Link to="/rq-infinite">Infinite Queries</Link>
+          </li>
+            <li>
+            <Link to="/rq-Mutation">Mutation</Link>
           </li>
           </ul>
         </nav>
@@ -68,6 +72,9 @@ function App() {
           </Route>
           <Route exact path="/rq-infinite">
             <InfiniteQueries />
+          </Route>
+          <Route exact path="/rq-mutation">
+            <MutationPage />
           </Route>
         </Switch>
       </div>

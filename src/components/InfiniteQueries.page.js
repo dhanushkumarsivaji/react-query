@@ -42,7 +42,7 @@ export const InfiniteQueries = () => {
             <Fragment key={i}>
               {group.data.map(color => (
                 <h2 key={color.id}>
-                  {color.id} {color.label}
+                  {color.id}{"."} {color.color}
                 </h2>
               ))}
             </Fragment>

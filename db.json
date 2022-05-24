@@ -14,12 +14,16 @@
       "id": 3,
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
-    }
-    ,
+    },
     {
       "id": 4,
       "name": "Aqua Man",
       "alterEgo": "Arthur"
+    },
+    {
+      "name": "Dhanush",
+      "alterEgo": "Dharma",
+      "id": 5
     }
   ],
   "friends": [
@@ -36,19 +40,23 @@
       "name": "Boobalan"
     }
   ],
-  "users":[
+  "users": [
     {
-      "id":"dhanushkumarsivaji@gmail.com",
+      "id": "dhanushkumarsivaji@gmail.com",
       "channelId": "dhanushkumarsivaji"
     }
   ],
-  "channels":[
+  "channels": [
     {
-      "id":"dhanushkumarsivaji",
-      "courses": ["react","gatsby","angular"]
+      "id": "dhanushkumarsivaji",
+      "courses": [
+        "react",
+        "gatsby",
+        "angular"
+      ]
     }
   ],
-  "colors":[
+  "colors": [
     {
       "id": 1,
       "color": "white"
