@@ -32,15 +32,43 @@ export const useSuperHerosData = (onSuccessCallback,onErrorCallback) => {
 
 export const useAddSuperHeroData = () => {
   const queryClient = useQueryClient()
-  return useMutation(addSuperHero,{
-    onSuccess: (data) => {
-      // queryClient.invalidateQueries('super-heros')
-      queryClient.setQueryData('super-heros', (oldQueryData) => {
+
+  return useMutation(addSuperHero, {
+    // onSuccess: data => {
+    //   /** Query Invalidation Start */
+    //   // queryClient.invalidateQueries('super-heros')
+    //   /** Query Invalidation End */
+
+    //   /** Handling Mutation Response Start */
+    // queryClient.setQueryData('super-heros', oldQueryData => {
+    //   return {
+    //     ...oldQueryData,
+    //     data: [...oldQueryData.data, data.data]
+    //   }
+    // })
+    //   /** Handling Mutation Response Start */
+    // },
+    /**Optimistic Update Start */
+    onMutate: async newHero => {
+      await queryClient.cancelQueries('super-heros')
+      const previousHeroData = queryClient.getQueryData('super-heros')
+      queryClient.setQueryData('super-heros', oldQueryData => {
         return {
           ...oldQueryData,
-          data: [...oldQueryData.data,data.data]
+          data: [
+            ...oldQueryData.data,
+            { id: oldQueryData?.data?.length + 1, ...newHero }
+          ]
         }
       })
+      return { previousHeroData }
+    },
+    onError: (_err, _newTodo, context) => {
+      queryClient.setQueryData('super-heros', context.previousHeroData)
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries('super-heros')
     }
-  });
+    /**Optimistic Update End */
+  })
 }
